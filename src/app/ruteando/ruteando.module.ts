@@ -8,9 +8,12 @@ import { LoginComponent } from '../componentes/login/login.component';
 import { ErrorComponent } from '../componentes/error/error.component';
 import { PrincipalComponent } from '../componentes/principal/principal.component';
 import { AgilidadAritmeticaComponent } from '../componentes/agilidad-aritmetica/agilidad-aritmetica.component';
+import { HitItComponent } from '../componentes/hit-it/hit-it.component';
 import { MenuComponent } from '../componentes/menu/menu.component';
 import { AdivinaMasListadoComponent } from '../componentes/adivina-mas-listado/adivina-mas-listado.component';
 import { AgilidadMasListadoComponent } from '../componentes/agilidad-mas-listado/agilidad-mas-listado.component';
+import { TaTeTiComponent } from '../componentes/ta-te-ti/ta-te-ti.component';
+import { PiedraPapelTijeraComponent } from '../componentes/piedra-papel-tijera/piedra-papel-tijera.component';
 import { AnagramaComponent } from '../componentes/anagrama/anagrama.component';
 import { ListadoComponent } from '../componentes/listado/listado.component'
 import { ListadosComponent } from '../componentes/listados/listados.component';
@@ -36,15 +39,16 @@ const MiRuteo = [
   { path: 'Listado', component: ListadoComponent },
   { path: 'Paises', component: ListadoDePaisesComponent },
   {
-    path: 'Juegos',
+    path: 'Games',
     component: JuegosComponent,
     children: [
       { path: '', component: MenuCardComponent },
-      { path: 'Adivina', component: AdivinaElNumeroComponent },
-      { path: 'AdivinaMasListado', component: AdivinaMasListadoComponent },
-      { path: 'AgilidadaMasListado', component: AgilidadMasListadoComponent },
-      { path: 'Anagrama', component: AnagramaComponent },
-      { path: 'Agilidad', component: AgilidadAritmeticaComponent }
+      { path: 'GuessTheNumber', component: AdivinaElNumeroComponent },
+      { path: 'Anagram', component: AnagramaComponent },
+      { path: 'MathSpeed', component: AgilidadAritmeticaComponent },
+      { path: 'HitIt', component: HitItComponent },
+      { path: 'TicTacToe', component: TaTeTiComponent },
+      { path: 'RockPaperScissors', component: PiedraPapelTijeraComponent }
     ]
   },
   { path: '**', component: ErrorComponent },

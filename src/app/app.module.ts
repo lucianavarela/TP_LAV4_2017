@@ -54,6 +54,8 @@ import { AgmCoreModule } from '@agm/core';
 import { InputJugadoresComponent } from './componentes/input-jugadores/input-jugadores.component';
 import { SexoPipe } from './pipes/sexo.pipe';
 import { HitItComponent } from './componentes/hit-it/hit-it.component';
+import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
+import { TaTeTiComponent } from './componentes/ta-te-ti/ta-te-ti.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { HitItComponent } from './componentes/hit-it/hit-it.component';
     JugadoresListadoComponent,
     InputJugadoresComponent,
     SexoPipe,
-    HitItComponent
+    HitItComponent,
+    PiedraPapelTijeraComponent,
+    TaTeTiComponent
   ],
   imports: [
     BrowserModule,

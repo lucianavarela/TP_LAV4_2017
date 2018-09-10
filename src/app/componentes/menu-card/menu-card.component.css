@@ -1,15 +1,7 @@
-/*img {
-    position: absolute;
-    height: 5rem;
-}*/
-
 .box {
     position: relative;
     height: auto;
-}
-
-.box:hover .description {
-    display: block !important;
+    cursor: pointer;
 }
 
 .box h2 {
@@ -45,8 +37,8 @@
 }
 
 .is-extralarge {
-    height: 7rem;
-    width: 6rem;
+    height: 9rem;
+    width: 7rem;
 }
 
 .is-centered {
@@ -57,4 +49,8 @@
 
 .row-2 {
     margin-top: 1rem;
+}
+
+.description {
+    position: absolute;
 }

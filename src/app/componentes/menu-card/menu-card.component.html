@@ -1,7 +1,7 @@
 <div style="margin-top:1rem">
   <div class="columns is-multiline is-mobile">
     <div *ngFor="let juego of juegos" class="column is-one-third">
-      <div class="box is-{{juego.color}} row-{{juego.row}}" routerLink="/Juegos/{{juego.route}}">
+      <div class="box is-{{juego.color}} row-{{juego.row}}" routerLink="/Games/{{juego.route}}">
         <div class="columns">
           <div class="column is-5">
             <span class="icon is-extralarge">
@@ -12,7 +12,6 @@
             <h2>{{juego.nombre}}</h2>
           </div>
         </div>
-        <div class="description" style="display:none">{{juego.descripcion}}</div>
       </div>
     </div>
   </div>

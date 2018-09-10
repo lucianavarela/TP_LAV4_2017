@@ -5,6 +5,16 @@ form {
     background:gray;
 }
 
+.is-yellow {
+    background-color: #fac632;
+}
+
+.box h2 {
+    font-size: 2rem;
+    color: white;
+}
+
+
 input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;

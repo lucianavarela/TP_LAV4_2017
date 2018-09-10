@@ -1,0 +1,18 @@
+
+.is-orange {
+    background-color: #f39331;
+}
+
+.box h2 {
+    font-size: 2rem;
+    color: white;
+}
+
+#valorRandom {
+    font-size: 5rem;
+}
+
+#inputValor {
+    font-size: 4rem;
+    width: 4rem;
+}
