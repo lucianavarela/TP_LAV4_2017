@@ -11,4 +11,64 @@
     <div class="column is-1">
     </div>
   </div>
+
+  <form id="juego" name="juego">
+
+    <div *ngIf="!isEnd && nuevoJuego.userOption==''">
+      <div class="columns">
+        <div class="column has-text-centered">
+          <p>Rock</p>
+          <button class="button option is-Rock">
+            <img src="./assets/imagenes/Rock.svg" alt="" (click)="verificar('Rock')">
+          </button>
+        </div>
+        <div class="column has-text-centered">
+          <p>Paper</p>
+          <button class="button option is-Paper">
+            <img src="./assets/imagenes/Paper.svg" alt="" (click)="verificar('Paper')">
+          </button>
+        </div>
+        <div class="column has-text-centered">
+          <p>Scissors</p>
+          <button class="button option is-Scissors">
+            <img src="./assets/imagenes/Scissors.svg" alt="" (click)="verificar('Scissors')">
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!isEnd && nuevoJuego.userOption!=''">
+      <div class="columns">
+        <div class="column has-text-centered">
+          <p>YOU</p>
+          <p>{{ nuevoJuego.userOption }}</p>
+          <button class="button option is-{{ nuevoJuego.userOption }}">
+            <img src="./assets/imagenes/{{ nuevoJuego.userOption }}.svg" alt="">
+          </button>
+        </div>
+        <div class="column has-text-centered">
+          <p>BOT</p>
+          <p>{{ nuevoJuego.botOption }}</p>
+          <button class="button option is-{{ nuevoJuego.botOption }}">
+            <img src="./assets/imagenes/{{ nuevoJuego.botOption }}.svg" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="has-text-centered">
+      <button id="startBtn" *ngIf="!isEnd && nuevoJuego.userOption!=''" (click)="start()" class="button is-large is-info">Start</button>
+    </div>
+  </form>
+
+</div>
+<div *ngIf="isEnd">
+  <div *ngIf="!nuevoJuego.gano && nuevoJuego.gano!=null" class="modal is-centered">
+    <img src="./assets/imagenes/looser.svg" alt="" (click)="closeModal()">
+  </div>
+  <div *ngIf="nuevoJuego.gano" class="modal is-centered">
+    <img src="./assets/imagenes/winner.svg" alt="" (click)="closeModal()">
+  </div>
+  <div *ngIf="nuevoJuego.gano==null" class="modal is-centered">
+    <button class="button is-warning is-large" (click)="closeModal()">IT'S A TIE</button>
+  </div>
 </div>

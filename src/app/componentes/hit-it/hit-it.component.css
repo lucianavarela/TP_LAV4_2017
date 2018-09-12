@@ -12,7 +12,32 @@
     font-size: 5rem;
 }
 
-#inputValor {
-    font-size: 4rem;
+input {
     width: 4rem;
+}
+
+.is-counter {
+    margin: 4rem;
+    background-color: #fdd833;
+    width: 15rem;
+}
+
+.is-counter p {
+    font-size: 4rem;
+}
+
+.is-level {
+    color: #0c3656;
+    font-size: 2rem;
+}
+
+
+.is-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+[hidden] {
+    display: none !important;
 }

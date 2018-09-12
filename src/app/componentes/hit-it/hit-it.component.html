@@ -11,29 +11,34 @@
     <div class="column is-1">
     </div>
   </div>
-
   <form id="juego" name="juego">
-
-    <div class="has-text-centered" id="valorRandom">
-      <h1 class="has-text-white">{{nuevoJuego.valorRandom}}</h1>
-    </div>
-
-
-    <div class="field">
-      <div class="control has-text-centered">
-        <input id=inputValor [(ngModel)]="nuevoJuego.valorIngresado" name="valorIngresado" class="input is-large" />
+    <div class="columns">
+      <div class="column">
+        <div class="is-centered has-text-centered">
+          <button id="startBtn" *ngIf="nuevoJuego.valorRandom==''" (click)="start()" class="button is-large is-info">Start</button>
+        </div>
+        <div class="has-text-centered" id="valorRandom">
+          <h1 class="has-text-white">{{nuevoJuego.valorRandom}}</h1>
+        </div>
+        <div class="field">
+          <div class="control has-text-centered">
+            <input *ngIf="nuevoJuego.valorRandom!=''" #inputValor matInput [(ngModel)]="nuevoJuego.valorIngresado" name="valorIngresado" class="input is-large" />
+          </div>
+        </div>
+        <div class="field">
+          <div class="control has-text-centered">
+            <button *ngIf="nuevoJuego.valorRandom!=''" (click)="verificar()" class="button is-large is-info">Enter</button>
+          </div>
+        </div>
+      </div>
+      <div class="column is-narrow has-text-centered">
+        <p class="is-large is-level is-white">NIVEL {{nuevoJuego.nivel}}</p>
+        <div class="box is-counter">
+          <p class="is-white">{{timeleft}}</p>
+        </div>
       </div>
     </div>
-
-
-    <div class="field">
-      <div class="control has-text-centered">
-        <button *ngIf="nuevoJuego.valorRandom!=''" (click)="verificar()" class="button is-large is-info">Verificar</button>
-      </div>
-    </div>
-
-    <p class="is-large is-white">NIVEL {{nuevoJuego.nivel}}</p>
-
   </form>
 
 </div>
+<div [hidden]="!isEnd" class="modal is-centered"><img src="./assets/imagenes/looser.svg" alt="" (click)="closeModal()" ></div>

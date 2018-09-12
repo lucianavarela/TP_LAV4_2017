@@ -4,7 +4,7 @@
     background-color: #7abbbf;
     width: 100%;
     position: fixed;
-    z-index: 9999;
+    z-index: 20;
 }
 
 .banner-image {

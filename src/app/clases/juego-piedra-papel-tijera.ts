@@ -1,29 +1,52 @@
 import { Juego } from "./juego";
 
 export class JuegoPiedraPapelTijera extends Juego {
-    numeroSecreto: number = 0;
-    numeroIngresado = 0;
+    userOption: string = '';
+    botOption: string = '';
+
     constructor(nombre?: string, gano?: boolean, jugador?: string) {
         super("Rock Paper Scissors", gano, jugador);
     }
+
     public verificar() {
-        if (this.numeroIngresado == this.numeroSecreto) {
-            this.gano = true;
+        switch (this.botOption) {
+            case 'Scissors':
+                if (this.userOption == 'Rock') {
+                    return true;
+                } else if (this.userOption == 'Paper') {
+                    return false;
+                } else {
+                    return null;
+                }
+            case 'Rock':
+                if (this.userOption == 'Scissors') {
+                    return false;
+                } else if (this.userOption == 'Paper') {
+                    return true;
+                } else {
+                    return null;
+                }
+            case 'Paper':
+                if (this.userOption == 'Rock') {
+                    return false;
+                } else if (this.userOption == 'Scissors') {
+                    return true;
+                } else {
+                    return null;
+                }
+            default:
+                return false;
         }
-        if (this.gano) {
-            return true;
+    }
+
+    public genBotOption() {
+        let random = Math.floor((Math.random() * 3) + 1);
+        if (random == 1) {
+            this.botOption = 'Rock';
+        } else if (random == 2) {
+            this.botOption = 'Paper';
         } else {
-            return false;
+            this.botOption = 'Scissors';
         }
-    }
-    public generarnumero() {
-        this.numeroSecreto = Math.floor((Math.random() * 100) + 1);
-        this.gano = false;
-    }
-    public retornarAyuda() {
-        if (this.numeroIngresado < this.numeroSecreto) {
-            return "Falta";
-        }
-        return "Te pasate";
     }
 }

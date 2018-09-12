@@ -11,3 +11,10 @@
 .container {
     padding-top: 6rem;
 }
+
+
+.modal {
+    background-color: #292929e0;
+    position: fixed;
+    z-index: 9999;
+}

@@ -3,6 +3,10 @@
     background-color: #2675a5;
 }
 
+.box {
+    height: 28rem !important;
+}
+
 .box h2 {
     font-size: 2rem;
     color: white;
@@ -10,4 +14,35 @@
 
 .is-larger {
     width: 4rem;
+}
+
+.is-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.option {
+    border-radius: 50%;
+    width: 7rem;
+    height: 7rem;
+    margin: 2rem;
+    border: none;
+}
+
+p {
+    font-size: 2rem;
+    color: white;
+}
+
+.is-Rock {
+    background-color: #28a745;
+}
+
+.is-Paper {
+    background-color: #fac632;
+}
+
+.is-Scissors {
+    background-color: #eb5a49;
 }
