@@ -1,9 +1,41 @@
 
 .is-blue {
     background-color: #0c3656;
+    height: 28rem !important;
 }
 
 .box h2 {
     font-size: 2rem;
     color: white;
+}
+
+.game-values {
+    background-color: #f39331;
+    color: white;
+    margin: 0 5rem;
+    font-size: 2rem;
+}
+
+.centered {
+    text-align: center;
+}
+
+input {
+    width: 10rem;
+    font-size: 2rem;
+    margin: 3rem 0;
+}
+
+.is-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.modal .message {
+    background-color: #c03724;
+    position:  absolute;
+    top: 82%;
+    font-size: 2rem;
+    color: #54130a;
 }

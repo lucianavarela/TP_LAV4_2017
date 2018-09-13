@@ -13,46 +13,46 @@
     </div>
   </div>
 
-  <form name="juego">
-    <ul>
-      <li>
-        Primer número: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado"
-          type="text" class="form-control" style="width:50%" readonly />
+  <form class="centered" name="juego">
+    <div *ngIf="nuevoJuego.operador==''" class="is-centered">
+      <h2><button (click)="NuevoJuego()" class="button is-info is-large">Start</button></h2>
+    </div>
 
-      </li>
-      <li>
-        Operador: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado"
-          type="text" class="form-control" style="width:50%" readonly />
+    <div *ngIf="nuevoJuego.operador!=''">
+      <div class="columns">
+        <div class="column">
+          <div class="box game-values">
+            <span>{{nuevoJuego.numeroUno}}</span>
+          </div>
+        </div>
+        <div class="column">
+          <div class="box game-values">
+            <span>{{nuevoJuego.operador}}</span>
+          </div>
+        </div>
+        <div class="column">
+          <div class="box game-values">
+            <span>{{nuevoJuego.numeroDos}}</span>
+          </div>
+        </div>
+      </div>
 
-      </li>
-      <li>
-        Segundo número: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado"
-          type="text" class="form-control" style="width:50%" readonly />
-
-      </li>
-      <li>
-        Respuesta: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado"
-          type="text" class="form-control" style="width:50%" />
-
-      </li>
-      <li>
-        <h2 [hidden]="ocultarVerificar"><button (click)="verificar()" class="btn btn-success btn-lg">Verificar
-            {{Tiempo}}
-          </button></h2>
-      </li>
-      <li>
-        <h2 [hidden]="!ocultarVerificar"><button (click)="NuevoJuego()" class="btn btn-info btn-lg">Nuevo</button></h2>
-      </li>
-      <li>
-        <h2>
-          <p><i class="fa fa-spinner fa-spin"></i>Esperando numero...</p>
-        </h2>
-
-        <h3 [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
-        <h3 [hidden]="nuevoJuego.gano">usted aún no gano </h3>
-      </li>
-    </ul>
-
+      <div>
+        <input [(ngModel)]="nuevoJuego.respuestaUser" placeholder="Answer..." name="respuestaUser" class="input is-large" />
+      </div>
+      
+      <button (click)="verificar()" class="button is-primary is-large">Verificar {{Tiempo}}</button>
+    </div>
+      
   </form>
 
+  <div *ngIf="isEnd&&!nuevoJuego.gano" class="modal is-centered">
+    <div class="box message">
+      <span>{{mensajeLooser}}</span>
+    </div>
+    <img src="./assets/imagenes/looser.svg" alt="" (click)="closeModal()">
+  </div>
+  <div *ngIf="isEnd&&nuevoJuego.gano" class="modal is-centered">
+    <img src="./assets/imagenes/winner.svg" alt="" (click)="closeModal()">
+  </div>
 </div>

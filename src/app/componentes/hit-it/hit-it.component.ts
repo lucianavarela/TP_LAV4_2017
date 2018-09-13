@@ -13,6 +13,7 @@ export class HitItComponent {
   timeleft: number = 0;
   milliseconds: number = 500;
   interval: any;
+  mensajeLooser: string = '';
 
   constructor() {
     this.nuevoJuego = new JuegoHitIt();
@@ -34,6 +35,7 @@ export class HitItComponent {
       this.startCountdown();
     } else {
       this.isEnd = true;
+      this.mensajeLooser = 'Value was ' + this.nuevoJuego.valorRandom;
       clearInterval(this.interval);
       this.nuevoJuego.valorRandom = '';
     }
@@ -47,6 +49,7 @@ export class HitItComponent {
       this.timeleft--;
       if (this.timeleft <= 0) {
         this.isEnd = true;
+        this.mensajeLooser = 'Out of Time!';
         clearInterval(this.interval);
         this.nuevoJuego.valorRandom = '';
       };

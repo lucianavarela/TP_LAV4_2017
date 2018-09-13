@@ -41,3 +41,10 @@ input {
 [hidden] {
     display: none !important;
 }
+.modal .message {
+    background-color: #c03724;
+    position:  absolute;
+    top: 82%;
+    font-size: 2rem;
+    color: #54130a;
+}

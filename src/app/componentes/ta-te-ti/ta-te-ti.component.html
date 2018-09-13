@@ -1,14 +1,65 @@
 <div class="box is-red">
-    <div class="columns">
-      <div class="column is-1">
-        <span class="icon is-large">
-          <img src="./assets/imagenes/tic-tac-toe.svg">
-        </span>
-      </div>
-      <div class="column has-text-centered">
-        <h2>Tic Tac Toe</h2>
-      </div>
-      <div class="column is-1">
-      </div>
+  <div class="columns">
+    <div class="column is-1">
+      <span class="icon is-large">
+        <img src="./assets/imagenes/tic-tac-toe.svg">
+      </span>
+    </div>
+    <div class="column has-text-centered">
+      <h2>Tic Tac Toe</h2>
+    </div>
+    <div class="column is-1">
     </div>
   </div>
+
+  <div *ngIf="nuevoJuego.gano==null" class="is-absolute">
+    <h2><button (click)="start()" class="button is-info is-large">Start</button></h2>
+  </div>
+
+  <form name="juego" class="is-centered">
+
+    <table id="board">
+      <tr>
+        <td (click)="play('1')">
+          <img *ngIf="nuevoJuego.spot1!==''" class="img-game" src="./assets/imagenes/{{nuevoJuego.spot1}}.svg" alt="">
+        </td>
+        <td (click)="play('2')">
+          <img *ngIf="nuevoJuego.spot2!==''" class="img-game" src="./assets/imagenes/{{nuevoJuego.spot2}}.svg" alt="">
+        </td>
+        <td (click)="play('3')">
+          <img *ngIf="nuevoJuego.spot3!==''" class="img-game" src="./assets/imagenes/{{nuevoJuego.spot3}}.svg" alt="">
+        </td>
+      </tr>
+      <tr>
+        <td (click)="play('4')">
+          <img *ngIf="nuevoJuego.spot4!==''" class="img-game" src="./assets/imagenes/{{nuevoJuego.spot4}}.svg" alt="">
+        </td>
+        <td (click)="play('5')">
+          <img *ngIf="nuevoJuego.spot5!==''" class="img-game" src="./assets/imagenes/{{nuevoJuego.spot5}}.svg" alt="">
+        </td>
+        <td (click)="play('6')">
+          <img *ngIf="nuevoJuego.spot6!==''" class="img-game" src="./assets/imagenes/{{nuevoJuego.spot6}}.svg" alt="">
+        </td>
+      </tr>
+      <tr>
+        <td (click)="play('7')">
+          <img *ngIf="nuevoJuego.spot7!==''" class="img-game" src="./assets/imagenes/{{nuevoJuego.spot7}}.svg" alt="">
+        </td>
+        <td (click)="play('8')">
+          <img *ngIf="nuevoJuego.spot8!==''" class="img-game" src="./assets/imagenes/{{nuevoJuego.spot8}}.svg" alt="">
+        </td>
+        <td (click)="play('9')">
+          <img *ngIf="nuevoJuego.spot9!==''" class="img-game" src="./assets/imagenes/{{nuevoJuego.spot9}}.svg" alt="">
+        </td>
+      </tr>
+    </table>
+
+    <div *ngIf="isEnd&&!nuevoJuego.gano" class="modal is-centered">
+      <img src="./assets/imagenes/looser.svg" alt="" (click)="closeModal()">
+    </div>
+    <div *ngIf="isEnd&&nuevoJuego.gano" class="modal is-centered">
+      <img src="./assets/imagenes/winner.svg" alt="" (click)="closeModal()">
+    </div>
+  </form>
+
+</div>
