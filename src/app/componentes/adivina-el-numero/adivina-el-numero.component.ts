@@ -11,72 +11,51 @@ export class AdivinaElNumeroComponent implements OnInit {
   @Output() enviarJuego: EventEmitter<any> = new EventEmitter<any>();
 
   nuevoJuego: JuegoAdivina;
-  Mensajes: string;
-  contador: number;
-  ocultarVerificar: boolean;
+  mensajes: string;
+  contador: number = 0;
+  thinking: boolean = true;
 
   constructor() {
     this.nuevoJuego = new JuegoAdivina();
-    this.ocultarVerificar = false;
   }
+  
   generarnumero() {
+    this.nuevoJuego.gano=false;
     this.nuevoJuego.generarnumero();
     this.contador = 0;
+    this.thinking = true;
   }
+
   verificar() {
     this.contador++;
-    this.ocultarVerificar = true;
-
     if (this.nuevoJuego.verificar()) {
-
-      this.enviarJuego.emit(this.nuevoJuego);
-      this.MostarMensaje("Sos un Genio!!!", true);
-      this.nuevoJuego.numeroSecreto = 0;
-
+      this.nuevoJuego.numeroIngresado='';
+      //this.enviarJuego.emit(this.nuevoJuego);
     } else {
-
-      let mensaje: string;
-      switch (this.contador) {
-        case 1:
-          mensaje = "No, intento fallido, animo";
-          break;
-        case 2:
-          mensaje = "No,Te estaras Acercando???";
-          break;
-        case 3:
-          mensaje = "No es, Yo crei que la tercera era la vencida.";
-          break;
-        case 4:
-          mensaje = "No era el  " + this.nuevoJuego.numeroIngresado;
-          break;
-        case 5:
-          mensaje = " intentos y nada.";
-          break;
-        case 6:
-          mensaje = "Afortunado en el amor";
-          break;
-        default:
-          mensaje = "Ya le erraste " + this.contador + " veces";
-          break;
-      }
-      this.MostarMensaje("#" + this.contador + " " + mensaje + " ayuda :" + this.nuevoJuego.retornarAyuda());
+      this.thinking = false;
+      let that = this;
+      setTimeout(function () {
+        that.MostarMensaje("Try #" + that.contador + ": " + that.nuevoJuego.retornarAyuda());
+      }, 100);
     }
   }
 
-  MostarMensaje(mensaje: string = "este es el mensaje", ganador: boolean = false) {
-    this.Mensajes = mensaje;
-    var x = document.getElementById("snackbar");
-    if (ganador) {
-      x.className = "show Ganador";
-    } else {
-      x.className = "show Perdedor";
-    }
-    var modelo = this;
+  MostarMensaje(mensaje: string) {
+    this.mensajes = mensaje;
+    let that = this;
     setTimeout(function () {
-      x.className = x.className.replace("show", "");
-      modelo.ocultarVerificar = false;
-    }, 3000);
+      that.nuevoJuego.numeroIngresado='';
+      that.mensajes = '';
+      that.thinking = true;
+    }, 1500);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.generarnumero();
+  }
+
+  closeModal() {
+    this.generarnumero();
+  }
+
 }

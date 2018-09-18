@@ -1,4 +1,4 @@
-<div class="box is-darkred">
+<div id="game" class="box is-darkred">
   <div class="columns">
     <div class="column is-1">
       <span class="icon is-large">
@@ -12,6 +12,46 @@
     </div>
   </div>
 
-  <!--app content-->
+
+  <form class="centered has-text-centered" name="juego" autocomplete="off">
+    <input autocomplete="false" name="hidden" type="text" style="display:none;">
+
+    <div>
+      <div class="columns is-multiline is-centered">
+        <div *ngFor="let letter of chars_in_secretword" class="column is-narrow">
+          <div class="box letters">
+            <span>{{letter | uppercase}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="nuevoJuego.gano != null">
+        <input [(ngModel)]="nuevoJuego.palabraIngresada" placeholder="Answer..." name="respuestaUser" class="input is-large" />
+      </div>
+
+      <div *ngIf="nuevoJuego.gano != null">
+        <button (click)="verificar()" class="button is-warning is-large">Verify</button>
+      </div>
+
+      <div *ngIf="nuevoJuego.gano == null" class="is-centered">
+        <div class="box word">
+          <span>{{ nuevoJuego.palabraSecreta | uppercase }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="nuevoJuego.gano==null" class="is-centered">
+      <h2><button (click)="start()" class="button is-info is-large">Start</button></h2>
+    </div>
+
+  </form>
+
+
+  <div *ngIf="isEnd&&!nuevoJuego.gano" class="modal is-centered">
+    <img src="./assets/imagenes/looser.svg" alt="" (click)="closeModal()">
+  </div>
+  <div *ngIf="isEnd&&nuevoJuego.gano" class="modal is-centered">
+    <img src="./assets/imagenes/winner.svg" alt="" (click)="closeModal()">
+  </div>
 
 </div>

@@ -7,3 +7,41 @@
     font-size: 2rem;
     color: white;
 }
+
+#game {
+    height: 30rem !important;
+}
+
+.letters {
+    background-color: #f39331;
+    width: 5.5rem;
+    font-size: 2rem;
+}
+
+.letters span {
+    color: white;
+}
+
+.is-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+input {
+    width: 10rem;
+}
+
+button {
+    margin: 2rem 0;
+}
+
+.word {
+    background-color: #eb5a49;
+    width: fit-content;
+}
+
+.word span {
+    color: white;
+    font-size: 2rem;
+}

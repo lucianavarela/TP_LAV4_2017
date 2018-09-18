@@ -2,10 +2,11 @@
 
 @import "bulma";
 
-.body {
-    background-color: #bde0e0;
-    height: -webkit-fill-available;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+body {
+    background-color: #bde0e0 !important;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+    height: 100vh;
+    min-height: 100vh;
 }
 
 .container {

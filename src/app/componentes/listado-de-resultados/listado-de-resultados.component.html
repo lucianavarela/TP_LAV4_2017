@@ -1,25 +1,8 @@
-<!--div *ngFor="let juego of listado">
-
-<p> {{juego.nombre}} </p>
-<p> {{juego.jugador}} </p>
-
-</div-->
-
-<table class="table table-condensed">
-    <thead>
-      <tr>
-        <th>Juego</th>
-        <th>Jugador</th>
-        <th>Resultado</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let juego of listado">
-        <td>{{juego.nombre}} </td>
-        <td>{{juego.jugador}} </td> 
-        <td *ngIf="juego.gano">Gano </td>   
-        <td *ngIf="!juego.gano">Perdio</td>     
-      </tr>
-     
-    </tbody>
-  </table>
+<div class="has-text-centered">
+  <h1 class="title has-text-weight-bold" style="margin:1rem 0">{{nombre}}</h1>
+</div>
+<div *ngFor="let day of dias" class="box">
+  <div style="position:absolute;right:3rem;"><span id={{day}}>{{contadorDias}}</span> likes</div>
+  <p class="has-text-weight-bold">{{day}}</p>
+  <app-results-row (sendContador)="metodoContadorDias($event, $dia)" [nombre]="nombre" [juegos]="juegos" [dia]="day"></app-results-row>
+</div>

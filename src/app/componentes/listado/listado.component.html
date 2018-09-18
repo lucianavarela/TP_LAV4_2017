@@ -1,17 +1,7 @@
 <app-cabecera> </app-cabecera>
 
-<div class="container">
-  <!--input type="button" (click)="llamaService()" class="btn btn-info" value="Pulsame" > 
-<input type="button" (click)="llamaServicePromesa()" class="btn btn-info" value="Pulsame Promesa" -->
-
-  <!-- Centered Pills -->
-  <ul class="nav nav-pills nav-justified">
-    <li class="active"><a routerLink="/Principal">Sala de Juegos</a></li>
-    <li><a (click)="llamaService()">Servicio</a></li>
-    <li><a (click)="llamaServicePromesa()">Serv Promesa</a></li>
-    <li><a (click)="llamaServicePromesa()">Serv observable</a></li>
-  </ul>
-
-  <app-listado-de-resultados [listado]="listadoParaCompartir"> </app-listado-de-resultados>
-
+<div class="container" style="position:relative">
+  Input your app's game:<input [(ngModel)]="myapp" name="" id="" value="GAME TIME">
+  <div style="position:absolute;right:-5rem">{{contador}} likes</div>
+  <app-listado-de-resultados (sendContadorMayor)="contadorTotal()" [juegos]="misJuegos" [nombre]="myapp"> </app-listado-de-resultados>
 </div>

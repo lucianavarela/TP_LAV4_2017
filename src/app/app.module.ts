@@ -56,6 +56,7 @@ import { SexoPipe } from './pipes/sexo.pipe';
 import { HitItComponent } from './componentes/hit-it/hit-it.component';
 import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
 import { TaTeTiComponent } from './componentes/ta-te-ti/ta-te-ti.component';
+import { ResultsRowComponent } from './componentes/results-row/results-row.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { TaTeTiComponent } from './componentes/ta-te-ti/ta-te-ti.component';
     SexoPipe,
     HitItComponent,
     PiedraPapelTijeraComponent,
-    TaTeTiComponent
+    TaTeTiComponent,
+    ResultsRowComponent
   ],
   imports: [
     BrowserModule,

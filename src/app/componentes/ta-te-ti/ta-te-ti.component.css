@@ -87,3 +87,9 @@ tr:nth-of-type(3) td {
     position: absolute;
     right: 10%;
 }
+
+.thinking {
+    position: absolute;
+    bottom: 0;
+    height: 40%;
+}

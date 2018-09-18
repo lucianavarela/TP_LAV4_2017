@@ -9,13 +9,14 @@ import { JuegoTaTeTi } from '../../clases/juego-tateti';
 export class TaTeTiComponent implements OnInit {
   nuevoJuego: JuegoTaTeTi;
   isEnd: boolean = false;
+  thinking: boolean = false;
 
   constructor() {
     this.nuevoJuego = new JuegoTaTeTi();
   }
 
   play(position: string) {
-    if (!this.isEnd && this.nuevoJuego.gano != null) {
+    if (!this.isEnd && this.nuevoJuego.gano != null && !this.thinking) {
       let moveDone = false;
       if (position == '1' && this.nuevoJuego.spot1 == '') {
         this.nuevoJuego.spot1 = 'cross';
@@ -48,8 +49,14 @@ export class TaTeTiComponent implements OnInit {
       if (moveDone) {
         this.isEnd = this.nuevoJuego.verificar();
         if (!this.isEnd) {
-          this.nuevoJuego.botPlays();
-          this.isEnd = this.nuevoJuego.verificar();
+          this.thinking = true;
+          let that = this;
+          let time = Math.floor((Math.random() * 1000) + 100);
+          setTimeout(function(){
+            that.thinking = false;
+            that.nuevoJuego.botPlays();
+            that.isEnd = that.nuevoJuego.verificar();
+          }, time);
         }
       }
     }
