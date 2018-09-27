@@ -52,7 +52,6 @@ export class JuegoServiceService {
     return this.miHttp.httpPostP(this.miHttp.api + 'api/resultado/', objeto).subscribe(
       success => {
         this.peticion = success;
-        alert('resultado cargado!');
       }, error => {
         console.log(error);
       });
