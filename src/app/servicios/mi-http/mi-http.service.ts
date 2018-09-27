@@ -17,7 +17,7 @@ const httpOptions = {
 
 @Injectable()
 export class MiHttpService {
-  public api: string = "http://localhost:3000/servidor/";
+  public api: string = "http://gametimeback.herokuapp.com/";
   status: number;
 
   constructor(public http: HttpClient) { }
