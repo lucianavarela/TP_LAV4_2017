@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from "rxjs";
 import { TimerObservable } from "rxjs/observable/TimerObservable";
 import { LoginService } from '../../servicios/login.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-registro',
@@ -39,6 +40,7 @@ export class RegistroComponent implements OnInit {
 
   signup() {
     if (this.clave1 === this.clave2) {
+      $('.password').removeClass('is-danger');
       this.logeando = false;
       let timer = TimerObservable.create(200, 50);
       this.subscription = timer.subscribe(t => {
@@ -50,7 +52,7 @@ export class RegistroComponent implements OnInit {
         }
       });
     } else {
-      alert('contraseñas no son iguales');
+      $('.password').addClass('is-danger');
     }
   }
 }
