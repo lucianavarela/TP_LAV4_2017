@@ -13,9 +13,20 @@ body {
     padding-top: 6rem;
 }
 
-
 .modal {
     background-color: #292929e0;
     position: fixed;
     z-index: 9999;
+}
+
+.creator {
+    position: absolute;
+    bottom: 0.5rem;
+    left:0.8rem;
+    color: rgb(100, 100, 100);
+}
+
+.creator:hover {
+    color: rgb(70, 70, 70);
+    cursor: pointer;
 }

@@ -3,6 +3,7 @@ import { Juego } from "./juego";
 export class JuegoPiedraPapelTijera extends Juego {
     userOption: string = '';
     botOption: string = '';
+    nivel: number = 1;
 
     constructor(nombre?: string, gano?: boolean, jugador?: string) {
         super("Rock Paper Scissors", gano, jugador);
@@ -12,31 +13,37 @@ export class JuegoPiedraPapelTijera extends Juego {
         switch (this.botOption) {
             case 'Scissors':
                 if (this.userOption == 'Rock') {
-                    return true;
+                    this.gano = true;
                 } else if (this.userOption == 'Paper') {
-                    return false;
+                    this.gano = false;
                 } else {
-                    return null;
+                    this.gano = null;
                 }
+                break;
             case 'Rock':
                 if (this.userOption == 'Scissors') {
-                    return false;
+                    this.gano = false;
                 } else if (this.userOption == 'Paper') {
-                    return true;
+                    this.gano = true;
                 } else {
-                    return null;
+                    this.gano = null;
                 }
+                break;
             case 'Paper':
                 if (this.userOption == 'Rock') {
-                    return false;
+                    this.gano = false;
                 } else if (this.userOption == 'Scissors') {
-                    return true;
+                    this.gano = true;
                 } else {
-                    return null;
+                    this.gano = null;
                 }
+                break;
             default:
-                return false;
+                this.gano = false;
+                break;
         }
+        
+        return this.gano;
     }
 
     public genBotOption() {

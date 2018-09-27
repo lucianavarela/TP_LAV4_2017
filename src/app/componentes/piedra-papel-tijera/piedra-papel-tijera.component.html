@@ -7,6 +7,7 @@
     </div>
     <div class="column has-text-centered">
       <h2>Rock Paper Scissors</h2>
+      <h2 *ngIf="!isEnd && nuevoJuego.userOption==''" class="has-text-warning" style="margin-top:2rem;">Nivel {{nuevoJuego.nivel}}</h2>
     </div>
     <div class="column is-1">
     </div>

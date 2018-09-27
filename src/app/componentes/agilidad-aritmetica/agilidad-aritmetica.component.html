@@ -8,6 +8,7 @@
     </div>
     <div class="column has-text-centered">
       <h2>Math Speed</h2>
+      <h2 *ngIf="nuevoJuego.operador!=''" class="has-text-warning" style="margin-top:2rem;">Nivel {{nuevoJuego.nivel}}</h2>
     </div>
     <div class="column is-1">
     </div>
@@ -41,7 +42,7 @@
         <input [(ngModel)]="nuevoJuego.respuestaUser" placeholder="Answer..." name="respuestaUser" class="input is-large" />
       </div>
       
-      <button (click)="verificar()" class="button is-primary is-large">Verificar {{Tiempo}}</button>
+      <button *ngIf="!isEnd" (click)="verificar()" class="button is-primary is-large">Verificar | {{Tiempo}}</button>
     </div>
       
   </form>

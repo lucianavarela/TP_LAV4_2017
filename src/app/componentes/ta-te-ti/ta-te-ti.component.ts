@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JuegoTaTeTi } from '../../clases/juego-tateti';
+import { JuegoServiceService } from '../../servicios/juego-service.service';
 
 @Component({
   selector: 'app-ta-te-ti',
@@ -10,9 +11,11 @@ export class TaTeTiComponent implements OnInit {
   nuevoJuego: JuegoTaTeTi;
   isEnd: boolean = false;
   thinking: boolean = false;
+  juegoService: JuegoServiceService;
 
-  constructor() {
+  constructor(juegoService: JuegoServiceService) {
     this.nuevoJuego = new JuegoTaTeTi();
+    this.juegoService = juegoService;
   }
 
   play(position: string) {
@@ -47,17 +50,31 @@ export class TaTeTiComponent implements OnInit {
         moveDone = true;
       }
       if (moveDone) {
-        this.isEnd = this.nuevoJuego.verificar();
+        this.verificar();
         if (!this.isEnd) {
           this.thinking = true;
           let that = this;
           let time = Math.floor((Math.random() * 1000) + 100);
-          setTimeout(function(){
+          setTimeout(function () {
             that.thinking = false;
             that.nuevoJuego.botPlays();
-            that.isEnd = that.nuevoJuego.verificar();
+            that.verificar();
           }, time);
         }
+      }
+    }
+  }
+
+  verificar() {
+    this.isEnd = this.nuevoJuego.verificar();
+    if (this.isEnd) {
+      if (!this.nuevoJuego.gano) {
+        if (this.nuevoJuego.nivel > 1) {
+          this.register();
+        }
+        this.nuevoJuego.nivel = 1;
+      } else {
+        this.nuevoJuego.nivel++;
       }
     }
   }
@@ -74,4 +91,12 @@ export class TaTeTiComponent implements OnInit {
     this.nuevoJuego.gano = null;
   }
 
+  register() {
+    let objeto: { juego: string, nivel: number, tiempo: number } = {
+      juego: 'tateti',
+      nivel: this.nuevoJuego.nivel,
+      tiempo: 0
+    }
+    this.juegoService.cargar(objeto);
+  }
 }

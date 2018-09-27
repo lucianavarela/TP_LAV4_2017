@@ -11,7 +11,9 @@
     <div class="column is-1">
     </div>
   </div>
-  <form id="juego" name="juego">
+
+  <form id="juego" name="juego" autocomplete="off">
+    <input autocomplete="false" name="hidden" type="text" style="display:none;">
     <div class="columns">
       <div class="column">
         <div class="is-centered has-text-centered">
@@ -20,15 +22,10 @@
         <div class="has-text-centered" id="valorRandom">
           <h1 class="has-text-white">{{nuevoJuego.valorRandom}}</h1>
         </div>
-        <div class="field">
+        <div class="field" style="margin-top:3rem;">
           <div class="control has-text-centered">
-            <input *ngIf="nuevoJuego.valorRandom!=''" #inputValor matInput [(ngModel)]="nuevoJuego.valorIngresado" name="valorIngresado"
-              class="input is-large" />
-          </div>
-        </div>
-        <div class="field">
-          <div class="control has-text-centered">
-            <button *ngIf="nuevoJuego.valorRandom!=''" (click)="verificar()" class="button is-large is-info">Enter</button>
+            <input [hidden]="nuevoJuego.valorRandom==''" id="inputValor" [(ngModel)]="nuevoJuego.valorIngresado" name="valorIngresado"
+              class="input is-large" (keyup)="verificar($event)" />
           </div>
         </div>
       </div>

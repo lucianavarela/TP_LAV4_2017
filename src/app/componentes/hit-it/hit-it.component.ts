@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, EventEmitter, Output, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
-import { JuegoHitIt } from '../../clases/juego-hit-it'
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { JuegoHitIt } from '../../clases/juego-hit-it';
+import { JuegoServiceService } from '../../servicios/juego-service.service';
 
 @Component({
   selector: 'app-hit-it',
@@ -11,12 +12,14 @@ export class HitItComponent {
   nuevoJuego: JuegoHitIt;
   isEnd: boolean = false;
   timeleft: number = 0;
-  milliseconds: number = 500;
+  milliseconds: number = 5000;
   interval: any;
   mensajeLooser: string = '';
+  juegoService: JuegoServiceService;
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef, juegoService: JuegoServiceService) {
     this.nuevoJuego = new JuegoHitIt();
+    this.juegoService = juegoService;
   }
 
   generarValor() {
@@ -24,6 +27,7 @@ export class HitItComponent {
   }
 
   verificar() {
+    this.nuevoJuego.tiempo_total += (this.milliseconds-this.timeleft);
     if (this.nuevoJuego.verificar()) {
       this.nuevoJuego.nivel++;
       if (this.nuevoJuego.nivel > 5 && this.nuevoJuego.nivel < 15) {
@@ -37,7 +41,14 @@ export class HitItComponent {
       this.isEnd = true;
       this.mensajeLooser = 'Value was ' + this.nuevoJuego.valorRandom;
       clearInterval(this.interval);
+      this.timeleft = 0;
       this.nuevoJuego.valorRandom = '';
+      this.cdr.detectChanges();
+      if (this.nuevoJuego.nivel > 1) {
+        this.register();
+      }
+      this.nuevoJuego.tiempo_total = 0;
+      this.nuevoJuego.nivel = 1;
     }
     this.nuevoJuego.valorIngresado = '';
   }
@@ -57,13 +68,21 @@ export class HitItComponent {
   };
   
   start() {
-    this.milliseconds = 500;
+    this.milliseconds = 5000;
     this.generarValor();
     this.startCountdown();
-    //this.htmlInput.nativeElement.focus();
   }
   
   closeModal() {
     this.isEnd = false;
+  }
+
+  register() {
+    let objeto: { juego: string, nivel: number, tiempo: number } = {
+      juego: 'hitit',
+      nivel: this.nuevoJuego.nivel,
+      tiempo: this.nuevoJuego.tiempo_total
+    }
+    this.juegoService.cargar(objeto);
   }
 }

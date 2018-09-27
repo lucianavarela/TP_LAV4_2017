@@ -7,7 +7,7 @@ import { ListadoDeResultadosComponent } from './componentes/listado-de-resultado
 import { LoginComponent } from './componentes/login/login.component';
 //  import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
-
+import { HttpClientModule } from '@angular/common/http';
 // import { AccordionModule } from 'ngx-bootstrap';
 // agrego las clases para utilizar ruteo
 import { RouterModule, Routes } from '@angular/router';
@@ -57,6 +57,7 @@ import { HitItComponent } from './componentes/hit-it/hit-it.component';
 import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
 import { TaTeTiComponent } from './componentes/ta-te-ti/ta-te-ti.component';
 import { ResultsRowComponent } from './componentes/results-row/results-row.component';
+import { LoginService } from './servicios/login.service';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { ResultsRowComponent } from './componentes/results-row/results-row.compo
     FormsModule,
     RuteandoModule,
     HttpModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB6f8x4IjRlesQ3oETc6BXYQHVRTOlY3Ys'
     })
@@ -100,7 +102,7 @@ import { ResultsRowComponent } from './componentes/results-row/results-row.compo
     // importo el ruteo
     // RouterModule.forRoot(MiRuteo)
   ],
-  providers: [ JuegoServiceService, MiHttpService,PaisesService,ArchivosJugadoresService,JugadoresService],
+  providers: [JuegoServiceService,MiHttpService,PaisesService,ArchivosJugadoresService,JugadoresService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

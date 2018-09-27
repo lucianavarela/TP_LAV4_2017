@@ -1,6 +1,6 @@
-
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { JuegoAdivina } from '../../clases/juego-adivina'
+import { JuegoServiceService } from '../../servicios/juego-service.service';
 
 @Component({
   selector: 'app-adivina-el-numero',
@@ -8,19 +8,19 @@ import { JuegoAdivina } from '../../clases/juego-adivina'
   styleUrls: ['./adivina-el-numero.component.css']
 })
 export class AdivinaElNumeroComponent implements OnInit {
-  @Output() enviarJuego: EventEmitter<any> = new EventEmitter<any>();
-
   nuevoJuego: JuegoAdivina;
   mensajes: string;
   contador: number = 0;
   thinking: boolean = true;
+  juegoService: JuegoServiceService;
 
-  constructor() {
+  constructor(juegoService: JuegoServiceService) {
     this.nuevoJuego = new JuegoAdivina();
+    this.juegoService = juegoService;
   }
-  
+
   generarnumero() {
-    this.nuevoJuego.gano=false;
+    this.nuevoJuego.gano = false;
     this.nuevoJuego.generarnumero();
     this.contador = 0;
     this.thinking = true;
@@ -29,8 +29,8 @@ export class AdivinaElNumeroComponent implements OnInit {
   verificar() {
     this.contador++;
     if (this.nuevoJuego.verificar()) {
-      this.nuevoJuego.numeroIngresado='';
-      //this.enviarJuego.emit(this.nuevoJuego);
+      this.register();
+      this.nuevoJuego.numeroIngresado = '';
     } else {
       this.thinking = false;
       let that = this;
@@ -44,10 +44,10 @@ export class AdivinaElNumeroComponent implements OnInit {
     this.mensajes = mensaje;
     let that = this;
     setTimeout(function () {
-      that.nuevoJuego.numeroIngresado='';
+      that.nuevoJuego.numeroIngresado = '';
       that.mensajes = '';
       that.thinking = true;
-    }, 1500);
+    }, 1000);
   }
 
   ngOnInit() {
@@ -58,4 +58,12 @@ export class AdivinaElNumeroComponent implements OnInit {
     this.generarnumero();
   }
 
+  register() {
+    let objeto: { juego: string, nivel: number, tiempo: number } = {
+      juego: 'guess',
+      nivel: this.contador,
+      tiempo: 0
+    }
+    this.juegoService.cargar(objeto);
+  }
 }

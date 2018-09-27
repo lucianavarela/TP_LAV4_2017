@@ -10,6 +10,7 @@ export class JuegoTaTeTi extends Juego {
     spot7: string = '';
     spot8: string = '';
     spot9: string = '';
+    nivel:number = 1;
 
     constructor(nombre?: string, gano?: boolean, jugador?: string) {
         super("TaTeTi", gano, jugador);
@@ -51,36 +52,37 @@ export class JuegoTaTeTi extends Juego {
     }
 
     public verificar() {
+        let is_over = false;
         if (this.spot1 == this.spot4 && this.spot4 == this.spot7 && this.spot7 != '') {
             this.gano = this.spot1 == 'cross';
-            return true;
+            is_over = true;
         } else if (this.spot2 == this.spot5 && this.spot5 == this.spot8 && this.spot8 != '') {
             this.gano = this.spot2 == 'cross';
-            return true;
+            is_over = true;
         } else if (this.spot3 == this.spot6 && this.spot6 == this.spot9 && this.spot9 != '') {
             this.gano = this.spot3 == 'cross';
-            return true;
+            is_over = true;
         } else if (this.spot1 == this.spot5 && this.spot5 == this.spot9 && this.spot9 != '') {
             this.gano = this.spot1 == 'cross';
-            return true;
+            is_over = true;
         } else if (this.spot3 == this.spot5 && this.spot5 == this.spot7 && this.spot7 != '') {
             this.gano = this.spot3 == 'cross';
-            return true;
+            is_over = true;
         } else if (this.spot1 == this.spot2 && this.spot2 == this.spot3 && this.spot3 != '') {
             this.gano = this.spot1 == 'cross';
-            return true;
+            is_over = true;
         } else if (this.spot4 == this.spot5 && this.spot5 == this.spot6 && this.spot6 != '') {
             this.gano = this.spot4 == 'cross';
-            return true;
+            is_over = true;
         } else if (this.spot7 == this.spot8 && this.spot8 == this.spot9 && this.spot9 != '') {
             this.gano = this.spot7 == 'cross';
-            return true;
+            is_over = true;
         } else if (this.spot1 != '' && this.spot2 != '' && this.spot3 != '' && this.spot4 != '' &&
             this.spot5 != '' && this.spot6 != '' && this.spot7 != '' && this.spot8 != '' && this.spot9 != '') {
             this.gano = false;
-            return true;
+            is_over = true;
         }
-        return false;
+        return is_over;
     }
 
     public reset() {

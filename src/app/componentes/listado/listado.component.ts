@@ -11,25 +11,29 @@ export class ListadoComponent implements OnInit {
   public misJuegos: Array<string>;
   public listadoParaCompartir: Array<any>;
   miServicioJuego: JuegoServiceService;
-  contador: number = 0;
+  resultados: any;
 
-  contadorTotal() {
-    this.contador++;
+  constructor (miServicioJuego: JuegoServiceService) {
+    this.miServicioJuego = miServicioJuego;
   }
 
   llamaService() {
-    console.log("llamaService");
     this.listadoParaCompartir = this.miServicioJuego.listar();
   }
 
   llamaServicePromesa() {
-    console.log("llamaServicePromesa");
     this.miServicioJuego.listarPromesa().then((listado) => {
       this.listadoParaCompartir = listado;
     });
   }
 
   ngOnInit() {
-    this.misJuegos = ['TicTacToe', 'Hit It!', 'Anagram', 'Math Speed', 'Rock Paper Scissors', 'Guess The Number'];
+    this.traerTodos('');
+  }
+
+  traerTodos(filtro:string) {
+    this.miServicioJuego.traerTodos(filtro).then(data => {
+      this.resultados = data;
+    })
   }
 }

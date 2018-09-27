@@ -6,6 +6,7 @@ export class JuegoHitIt extends Juego {
     valorIngresado: string = '';
     seconds: number = 0;
     milliseconds: number = 0;
+    tiempo_total:number = 0;
 
     constructor(nombre?: string, gano?: boolean, jugador?: string) {
         super("Hit It!", gano, jugador);

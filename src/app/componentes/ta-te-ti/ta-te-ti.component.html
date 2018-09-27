@@ -15,6 +15,9 @@
   <div *ngIf="nuevoJuego.gano==null" class="is-absolute">
     <h2><button (click)="start()" class="button is-info is-large">Start</button></h2>
   </div>
+  <div *ngIf="nuevoJuego.gano!=null" class="is-absolute">
+      <h2>Nivel {{nuevoJuego.nivel}}</h2>
+    </div>
 
   <form name="juego" class="is-centered">
 

@@ -7,15 +7,18 @@
       <img class="banner-image" src="./assets/imagenes/banner.svg" alt="Game Time">
     </div>
     <div class="column is-2 is-centered">
-      <div class="columns">
+      <div *ngIf="nombre==null" class="columns">
         <div class="column is-narrow is-centered" style="padding-right:0">
           <a class="button banner-button is-orange" routerLink="/Login">Log in</a>
         </div>
-        <div class="column is-narrow is-centered"style="padding-left:0">
+        <div class="column is-narrow is-centered" style="padding-left:0">
           <a class="button banner-button is-transparent" routerLink="/Registro">or Sign up</a>
         </div>
+      </div>
+      <div *ngIf="nombre!=null" id="loggedInBtns">
+        <a id="hello" class="button is-text" routerLink="/Login">Hello {{nombre}}!</a>
+        <a id="signout" class="button is-danger" (click)="logout()">Sign Out</a>
       </div>
     </div>
   </div>
 </div>
-<div class="creator" routerLink="/AboutMe">Created by Luciana Varela</div>

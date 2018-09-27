@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JuegoAnagrama } from '../../clases/juego-anagrama';
+import { JuegoServiceService } from '../../servicios/juego-service.service';
 
 @Component({
   selector: 'app-anagrama',
@@ -10,9 +11,11 @@ export class AnagramaComponent implements OnInit {
   nuevoJuego: JuegoAnagrama;
   isEnd: boolean = false;
   chars_in_secretword: Array<string>;
+  juegoService: JuegoServiceService;
 
-  constructor() {
+  constructor(juegoService: JuegoServiceService) {
     this.nuevoJuego = new JuegoAnagrama();
+    this.juegoService = juegoService;
   }
 
   generarPalabra() {
@@ -23,6 +26,14 @@ export class AnagramaComponent implements OnInit {
   verificar() {
     this.isEnd = true;
     this.nuevoJuego.verificar();
+    if (this.nuevoJuego.gano) {
+      this.nuevoJuego.nivel++;
+    } else {
+      if (this.nuevoJuego.nivel > 1) {
+        this.register();
+      }
+      this.nuevoJuego.nivel = 1;
+    }
   }
 
   ngOnInit() {
@@ -45,5 +56,14 @@ export class AnagramaComponent implements OnInit {
       [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
+  }
+
+  register() {
+    let objeto: { juego: string, nivel: number, tiempo: number } = {
+      juego: 'anagram',
+      nivel: this.nuevoJuego.nivel,
+      tiempo: 0
+    }
+    this.juegoService.cargar(objeto);
   }
 }

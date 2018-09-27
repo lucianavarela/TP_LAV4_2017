@@ -7,6 +7,7 @@
     </div>
     <div class="column has-text-centered">
       <h2>Anagram</h2>
+      <h2 *ngIf="nuevoJuego.gano!=null" class="has-text-warning" style="margin-top:2rem;">Nivel {{nuevoJuego.nivel}}</h2>
     </div>
     <div class="column is-1">
     </div>
@@ -30,7 +31,7 @@
       </div>
 
       <div *ngIf="nuevoJuego.gano != null">
-        <button (click)="verificar()" class="button is-warning is-large">Verify</button>
+        <button (click)="verificar()" class="button is-link is-large">Verify</button>
       </div>
 
       <div *ngIf="nuevoJuego.gano == null" class="is-centered">
@@ -48,10 +49,10 @@
 
 
   <div *ngIf="isEnd&&!nuevoJuego.gano" class="modal is-centered">
-    <img src="./assets/imagenes/looser.svg" alt="" (click)="closeModal()">
+    <img src="./assets/imagenes/looser.svg" (click)="closeModal()" alt="">
   </div>
   <div *ngIf="isEnd&&nuevoJuego.gano" class="modal is-centered">
-    <img src="./assets/imagenes/winner.svg" alt="" (click)="closeModal()">
+    <img src="./assets/imagenes/winner.svg" (click)="closeModal()" alt="">
   </div>
 
 </div>

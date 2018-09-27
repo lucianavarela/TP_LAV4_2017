@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JuegoPiedraPapelTijera } from '../../clases/juego-piedra-papel-tijera';
+import { JuegoServiceService } from '../../servicios/juego-service.service';
 
 @Component({
   selector: 'app-piedra-papel-tijera',
@@ -9,15 +10,25 @@ import { JuegoPiedraPapelTijera } from '../../clases/juego-piedra-papel-tijera';
 export class PiedraPapelTijeraComponent implements OnInit {
   nuevoJuego: JuegoPiedraPapelTijera;
   isEnd: boolean = false;
+  juegoService: JuegoServiceService;
 
-  constructor() {
+  constructor(juegoService: JuegoServiceService) {
     this.nuevoJuego = new JuegoPiedraPapelTijera();
+    this.juegoService = juegoService;
   }
 
   verificar(option) {
     this.nuevoJuego.userOption = option;
     this.nuevoJuego.genBotOption();
-    this.nuevoJuego.gano = this.nuevoJuego.verificar();;
+    this.nuevoJuego.verificar();
+    if (this.nuevoJuego.gano) {
+      this.nuevoJuego.nivel++;
+    } else if (this.nuevoJuego.gano != null) {
+      if (this.nuevoJuego.nivel > 1) {
+        this.register();
+      }
+      this.nuevoJuego.nivel = 1;
+    }
     this.isEnd = true;
   }
 
@@ -29,6 +40,15 @@ export class PiedraPapelTijeraComponent implements OnInit {
   }
 
   start() {
-    this.nuevoJuego.userOption='';
+    this.nuevoJuego.userOption = '';
+  }
+
+  register() {
+    let objeto: { juego: string, nivel: number, tiempo: number } = {
+      juego: 'rockpaperscissors',
+      nivel: this.nuevoJuego.nivel,
+      tiempo: 0
+    }
+    this.juegoService.cargar(objeto);
   }
 }

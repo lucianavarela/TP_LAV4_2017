@@ -1,7 +1,48 @@
 <app-cabecera> </app-cabecera>
 
-<div class="container" style="position:relative">
-  Input your app's game:<input [(ngModel)]="myapp" name="" id="" value="GAME TIME">
-  <div style="position:absolute;right:-5rem">{{contador}} likes</div>
-  <app-listado-de-resultados (sendContadorMayor)="contadorTotal()" [juegos]="misJuegos" [nombre]="myapp"> </app-listado-de-resultados>
+<div class="container">
+  <div class="columns" style="margin-top:1rem;">
+    <div class="column">
+      <button class="button is-black" (click)="traerTodos('')" >All</button>
+    </div>
+    <div class="column">
+      <button class="button" style="background-color:#f39331" (click)="traerTodos('Hit It!')">Hit It!</button>
+    </div>
+    <div class="column">
+      <button class="button" style="background-color:#b54324" (click)="traerTodos('Anagram')">Anagram</button>
+    </div>
+    <div class="column">
+      <button class="button" style="background-color:#2675a5" (click)="traerTodos('Rock Paper Scissors')">Rock Paper Scissors</button>
+    </div>
+    <div class="column">
+      <button class="button" style="background-color:#eb5a49" (click)="traerTodos('TicTacToe')">TicTacToe</button>
+    </div>
+    <div class="column">
+      <button class="button" style="background-color:#fac632" (click)="traerTodos('Guess The Number')">Guess The Number</button>
+    </div>
+    <div class="column">
+      <button class="button" style="background-color:#0c3656" (click)="traerTodos('Math Speed')">Math Speed</button>
+    </div>
+  </div>
+  <table class="table" style="margin-top:1rem;">
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Juego</th>
+        <th>Nivel</th>
+        <th>Tiempo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let resultado of resultados">
+        <td>{{resultado.nombre}} </td>
+        <td>{{resultado.juego}} </td>
+        <td>{{resultado.nivel}} </td>
+        <td>{{resultado.tiempo}} </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
 </div>

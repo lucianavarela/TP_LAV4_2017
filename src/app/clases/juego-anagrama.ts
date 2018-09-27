@@ -3,6 +3,7 @@ import { Juego } from "./juego";
 export class JuegoAnagrama extends Juego {
     palabraSecreta: string = '';
     palabraIngresada: string = '';
+    nivel: number = 1;
 
     constructor(nombre?: string, gano?: boolean, jugador?: string) {
         super("Anagram", gano, jugador);

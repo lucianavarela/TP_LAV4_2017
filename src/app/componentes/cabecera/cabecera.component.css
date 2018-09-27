@@ -33,14 +33,16 @@
     align-items: center; 
 }
 
-.creator {
-    position: absolute;
-    bottom: 0.5rem;
-    left:0.8rem;
-    color: rgb(100, 100, 100);
+#signout {
+    display: none;
+    text-decoration: none;
 }
 
-.creator:hover {
-    color: rgb(70, 70, 70);
-    cursor: pointer;
+#loggedInBtns:hover #hello{
+    display: none;
+}
+
+#loggedInBtns:hover #signout {
+    display: block;
+    color:white;
 }
