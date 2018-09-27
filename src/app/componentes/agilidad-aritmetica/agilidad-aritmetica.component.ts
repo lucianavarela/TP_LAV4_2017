@@ -71,7 +71,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
 
   register() {
     let objeto: { juego: string, nivel: number, tiempo: number } = {
-      juego: 'speedmath',
+      juego: 'Math Speed',
       nivel: this.nuevoJuego.nivel,
       tiempo: this.nuevoJuego.tiempo_total
     }

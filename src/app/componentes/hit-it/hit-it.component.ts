@@ -79,7 +79,7 @@ export class HitItComponent {
 
   register() {
     let objeto: { juego: string, nivel: number, tiempo: number } = {
-      juego: 'hitit',
+      juego: 'Hit It!',
       nivel: this.nuevoJuego.nivel,
       tiempo: this.nuevoJuego.tiempo_total
     }

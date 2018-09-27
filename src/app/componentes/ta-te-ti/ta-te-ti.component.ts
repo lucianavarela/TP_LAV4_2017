@@ -93,7 +93,7 @@ export class TaTeTiComponent implements OnInit {
 
   register() {
     let objeto: { juego: string, nivel: number, tiempo: number } = {
-      juego: 'tateti',
+      juego: 'TicTacToe',
       nivel: this.nuevoJuego.nivel,
       tiempo: 0
     }

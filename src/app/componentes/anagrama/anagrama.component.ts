@@ -60,7 +60,7 @@ export class AnagramaComponent implements OnInit {
 
   register() {
     let objeto: { juego: string, nivel: number, tiempo: number } = {
-      juego: 'anagram',
+      juego: 'Anagram',
       nivel: this.nuevoJuego.nivel,
       tiempo: 0
     }

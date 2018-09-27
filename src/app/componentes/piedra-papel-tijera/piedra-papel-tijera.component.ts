@@ -45,7 +45,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
 
   register() {
     let objeto: { juego: string, nivel: number, tiempo: number } = {
-      juego: 'rockpaperscissors',
+      juego: 'Rock Paper Scissors',
       nivel: this.nuevoJuego.nivel,
       tiempo: 0
     }

@@ -60,7 +60,7 @@ export class AdivinaElNumeroComponent implements OnInit {
 
   register() {
     let objeto: { juego: string, nivel: number, tiempo: number } = {
-      juego: 'guess',
+      juego: 'Guess The Number',
       nivel: this.contador,
       tiempo: 0
     }
