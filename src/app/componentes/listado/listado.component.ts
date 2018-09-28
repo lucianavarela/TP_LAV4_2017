@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { JuegoServiceService } from '../../servicios/juego-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado',
@@ -7,13 +8,15 @@ import { JuegoServiceService } from '../../servicios/juego-service.service';
   styleUrls: ['./listado.component.css']
 })
 export class ListadoComponent implements OnInit {
+  miRoute: Router;
   public myapp: string = "";
   public misJuegos: Array<string>;
   public listadoParaCompartir: Array<any>;
   miServicioJuego: JuegoServiceService;
   resultados: any;
 
-  constructor (miServicioJuego: JuegoServiceService) {
+  constructor (miServicioJuego: JuegoServiceService, route: Router) {
+    this.miRoute = route;
     this.miServicioJuego = miServicioJuego;
   }
 
@@ -28,7 +31,11 @@ export class ListadoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.traerTodos('');
+    if (!localStorage.getItem('nombre')) {
+      this.miRoute.navigate(['/Principal']);
+    } else {
+      this.traerTodos('');
+    }
   }
 
   traerTodos(filtro:string) {

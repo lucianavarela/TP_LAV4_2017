@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-juegos',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./juegos.component.css']
 })
 export class JuegosComponent implements OnInit {
+  miRoute: Router;
 
-  constructor() { }
+  constructor(route: Router) {
+    this.miRoute = route;
+  }
 
   ngOnInit() {
+    if (!localStorage.getItem('nombre')) {
+      this.miRoute.navigate(['/Principal']);
+    }
   }
 
 }

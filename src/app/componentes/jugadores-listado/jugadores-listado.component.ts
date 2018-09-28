@@ -1,21 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { JugadoresService } from '../../servicios/jugadores.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-jugadores-listado',
   templateUrl: './jugadores-listado.component.html',
   styleUrls: ['./jugadores-listado.component.css']
 })
 export class JugadoresListadoComponent implements OnInit {
-
+  miRoute: Router;
   listado: any;
   miJugadoresServicio: JugadoresService;
 
-  constructor(serviceJugadores: JugadoresService) {
+  constructor(serviceJugadores: JugadoresService, route: Router) {
+    this.miRoute = route;
     this.miJugadoresServicio = serviceJugadores;
   }
 
   ngOnInit() {
-    this.TraerTodos();
+    if (!localStorage.getItem('nombre')) {
+      this.miRoute.navigate(['/Principal']);
+    } else {
+      this.TraerTodos();
+    }
   }
 
 
